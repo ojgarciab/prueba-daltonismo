@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Meta tags requeridos -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pruebas de daltonismo</title>
+    <style>
+      #protanopia {
+        filter: grayscale(100%) sepia(100%) saturate(0.1) hue-rotate(-100deg);
+      }
+      #deuteranopia {
+        filter: grayscale(100%) sepia(100%) saturate(0.1) hue-rotate(-50deg);
+      }
+      #tritanopia {
+        filter: grayscale(100%) sepia(100%) saturate(0.1) hue-rotate(150deg);
+      }
+      #monochromacy {
+        filter: grayscale(100%);
+      }
+      img {
+        max-width: 300px;
+        max-height: 300px;
+      }
+    </style>
+    <script>
+      document.addEventListener(
+        "DOMContentLoaded",
+        (evento) => {
+          imagen.onchange = evento => {
+            const [ datos ] = imagen.files;
+            console.log(datos);
+            if (imagen) {
+              original.src = URL.createObjectURL(datos);
+              protanopia.src = original.src;
+              deuteranopia.src = original.src;
+              tritanopia.src = original.src;
+              monochromacy.src = original.src;
+            }
+          }
+        }
+      );
+    </script>
+  </head>
+  <body style="padding-top: 2rem;">
+    <input accept="image/*" type='file' id="imagen" /><br/>
+    <img id="original" />
+    <img id="protanopia" />
+    <img id="deuteranopia" />
+    <img id="tritanopia" />
+    <img id="monochromacy" />
+  </body>
+</html>
